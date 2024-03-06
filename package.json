@@ -1,6 +1,6 @@
 {
   "name": "@syahakato/ripple-effect",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "This is package to create ripple effect on your components",
   "main": "index.js",
   "repository": "https://github.com/syahrilaa/ripple-effects",

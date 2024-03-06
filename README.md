@@ -25,19 +25,35 @@ import Ripple from '@syahakato/ripple-effect'
 3. `@syahakato/ripple-effect` Ripple effect works by using events on elements. You need to initialize the Ripple() object first then use the add() method to get the ripple effect on the component.
 
 ```tsx
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import Ripple from '@syahakato/ripple-effect'
 
-function Example() {
-  const ripple = new Ripple()
-    return (
-        <>
-            <button onMouseUp={(e) => ripple.add(e)}>
-                example ripple
-            </button>
-        </>
-    );
+// Method 1
+function MyButton() {
+  const buttonRef = useRef(null)
+
+  useEffect(() => {
+    const ripple = new Ripple()
+    ripple.new([ buttonRef ])
+    return () => {
+      
+    }
+  }, [])
+  return (
+    <button ref={buttonRef}>
+      ripple 1
+    </button>
+  );
 }
 
+// Method 2
+function MyButton2() {
+  const ripple = new Ripple()
+  return (
+    <button onMouseUp={(e) => ripple.add(e)}>
+      ripple 2
+    </button>
+  );
+}
 export default Example
 ```
