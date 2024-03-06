@@ -1,0 +1,48 @@
+{
+  "name": "@syahakato/ripple-effect",
+  "version": "0.0.1",
+  "description": "This is package to create ripple effect on your components",
+  "main": "index.js",
+  "repository": "https://github.com/syahrilaa/ripple-effects",
+  "homepage": "https://github.com/syahrilaa/ripple-effect/blob/main/README.md",
+  "author": "syahril akbar atthoriq",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "yarn build:dts && yarn build:cjs && yarn copy",
+    "build:dts": "tsc --declaration --declarationMap --emitDeclarationOnly",
+    "build:cjs": "babel ./src/ -d dist --extensions \".ts\" --ignore \"**/*.test.ts\"",
+    "copy": "cp ./package.json ./dist && cp ./README.md ./dist && cp ./LICENSE ./dist"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.24.0",
+    "@babel/plugin-transform-class-properties": "^7.23.3",
+    "@babel/plugin-transform-runtime": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-modules": "^0.1.6",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@babel/runtime": "^7.24.0",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.63",
+    "@types/react-dom": "^18.2.20",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "AvioUI",
+    "create-react-app",
+    "react",
+    "next",
+    "typescript",
+    "javascript",
+    "react library",
+    "react tools",
+    "html tools",
+    "ripple react",
+    "ripple",
+    "ripple effects"
+  ]
+}
