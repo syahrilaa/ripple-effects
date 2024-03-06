@@ -1,6 +1,6 @@
-<h1 align="center">@syahakato/ripple-effect</h1>
+<h1 align="center">@avioutils/ripple-effects</h1>
 
-``@syahakato/ripple-effect`` is third party made for those of you who want to make your elements have a Ripple effect
+``@avioutils/ripple-effects`` is third party made for those of you who want to make your elements have a Ripple effect
 
 #### Features:
 - Dynamic color ripple
@@ -8,35 +8,35 @@
 
 #### Uses Instructions:
 
-1. Install the `@syahakato/ripple-effect` from terminal by npm or yarn.
+1. Install the `@avioutils/ripple-effects` from terminal by npm or yarn.
 
 ```bash
-npm i @syahakato/ripple-effect
+npm i @avioutils/ripple-effects
 
-yarn add @syahakato/ripple-effect
+yarn add @avioutils/ripple-effects
 ```
 
-2. Import the `@syahakato/ripple-effect` in to your project.
+2. Import the `@avioutils/ripple-effects` in to your project.
 
 ```ts
-import Ripple from '@syahakato/ripple-effect'
+import Ripple from '@avioutils/ripple-effects'
 ```
 
-3. `@syahakato/ripple-effect` Ripple effect works by using events on elements. You need to initialize the Ripple() object first then use the add() method to get the ripple effect on the component.
+3. `@avioutils/ripple-effects` Ripple effect works by using events on elements. You need to initialize the Ripple() object first then use the add() method to get the ripple effect on the component.
 
 ```tsx
 import React, { useRef, useEffect } from 'react'
-import Ripple from '@syahakato/ripple-effect'
+import Ripple from '@avioutils/ripple-effects'
 
 // Method 1
-function MyButton() {
+export const MyButton = () => {
   const buttonRef = useRef(null)
 
   useEffect(() => {
     const ripple = new Ripple()
     ripple.new([ buttonRef ])
     return () => {
-      
+
     }
   }, [])
   return (
@@ -47,7 +47,7 @@ function MyButton() {
 }
 
 // Method 2
-function MyButton2() {
+export const MyButton = () => {
   const ripple = new Ripple()
   return (
     <button onMouseUp={(e) => ripple.add(e)}>
@@ -55,5 +55,4 @@ function MyButton2() {
     </button>
   );
 }
-export default Example
 ```

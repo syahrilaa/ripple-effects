@@ -17,9 +17,12 @@ interface RippleRGBAColor {
 }
 
 interface RippleCircleRadius {
-    event: RippleElemenetEvent
-    rect: RippleDOMRect
-    element: RippleElementCircle
+    clientX: number
+    clientY: number
+    rectX: number
+    rectY: number
+    offWidth: number
+    offHeight: number
 }
 
 class Ripple {
@@ -28,6 +31,7 @@ class Ripple {
     private z: number = 0
 
     private setRippleStyles({ color, elementCircle, event, radius, rect }: RippleStyledProps) {
+        elementCircle.classList.add('avioui-ripple')
         elementCircle.style.backgroundColor = color
         elementCircle.style.borderRadius = '50%'
         elementCircle.style.pointerEvents = 'none'
@@ -37,12 +41,12 @@ class Ripple {
         elementCircle.style.width = elementCircle.style.height = radius * 2 + 'px'
     }
 
-    private getCircleRadius({ event, rect, element }: RippleCircleRadius) {
-        this.x = event.clientX - rect.left > element.offsetWidth / 1.5 ? 0 : element.offsetWidth
-        this.y = event.clientY - rect.top > element.offsetHeight / 1.5 ? 0 : element.offsetHeight
+    private getCircleRadius({ clientX, clientY, offHeight, offWidth, rectX, rectY}: RippleCircleRadius) {
+        this.x = clientX - rectX > offWidth / 1.5 ? 0 : offWidth
+        this.y = clientY - rectY > offHeight / 1.5 ? 0 : offHeight
         this.z = Math.hypot(
-            this.x - (event.clientX - rect.left),
-            this.y - (event.clientY - rect.top),
+            this.x - (clientX - rectX),
+            this.y - (clientY - rectY),
         )
         return this.z
     }
@@ -103,20 +107,24 @@ class Ripple {
 
     new(element: Array<React.RefObject<HTMLElement>>) {
         element.map((el, _) => {
-            const currentElement = el.current!
+            const currentElement = el.current
+            if (!currentElement) return
             currentElement.style.position = 'relative'
             currentElement.style.overflow = 'hidden'
             const rect = currentElement.getBoundingClientRect()
 
             currentElement.addEventListener('mouseup', (ev) => {
                 const radius = this.getCircleRadius({ 
-                    event: ev,
-                    rect: rect,
-                    element: currentElement
+                    clientX: ev.clientX,
+                    clientY: ev.clientY,
+                    rectY: rect.top,
+                    rectX: rect.right,
+                    offHeight: currentElement.offsetHeight,
+                    offWidth: currentElement.offsetWidth
                 })
+
                 const parentBackground = this.getParentBackground(currentElement)
                 const createCircle = document.createElement('span')
-                createCircle.classList.add('avioui-ripple')
                 createCircle.animate([{ transform: 'scale(0)', opacity: 1 }, { transform: 'scale(1.5)', opacity: 0 }], { duration: 600, easing: 'linear', })
         
                 this.setRippleStyles({
@@ -139,15 +147,17 @@ class Ripple {
         currentElement.style.overflow = 'hidden'
         const rect = currentElement.getBoundingClientRect()
 
-        
         const radius = this.getCircleRadius({ 
-            event: event,
-            rect: rect,
-            element: currentElement
+            clientX: event.clientX,
+            clientY: event.clientY,
+            rectY: rect.top,
+            rectX: rect.right,
+            offHeight: currentElement.offsetHeight,
+            offWidth: currentElement.offsetWidth
         })
+        
         const parentBackground = this.getParentBackground(currentElement)
         const createCircle = document.createElement('span')
-        createCircle.classList.add('avioui-ripple')
         createCircle.animate([{ transform: 'scale(0)', opacity: 1 }, { transform: 'scale(1.5)', opacity: 0 }], { duration: 600, easing: 'linear', })
 
         this.setRippleStyles({

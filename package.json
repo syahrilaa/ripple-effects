@@ -1,9 +1,12 @@
 {
-  "name": "@syahakato/ripple-effect",
-  "version": "1.0.0",
+  "name": "@avioutils/ripple-effects",
+  "version": "1.1.0",
   "description": "This is package to create ripple effect on your components",
   "main": "index.js",
-  "repository": "https://github.com/syahrilaa/ripple-effects",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syahrilaa/ripple-effects.git"
+  },
   "homepage": "https://github.com/syahrilaa/ripple-effect/blob/main/README.md",
   "author": "syahril akbar atthoriq",
   "license": "MIT",
@@ -14,7 +17,21 @@
     "build:cjs": "babel ./src/ -d dist --extensions \".ts\" --ignore \"**/*.test.ts\"",
     "copy": "cp ./package.json ./dist && cp ./README.md ./dist && cp ./LICENSE ./dist"
   },
-  "dependencies": {
+  "keywords": [
+    "AvioUI",
+    "create-react-app",
+    "react",
+    "next",
+    "typescript",
+    "javascript",
+    "react library",
+    "react tools",
+    "html tools",
+    "ripple react",
+    "ripple",
+    "ripple effects"
+  ],
+  "devDependencies": {
     "@babel/cli": "^7.23.9",
     "@babel/core": "^7.24.0",
     "@babel/plugin-transform-class-properties": "^7.23.3",
@@ -31,18 +48,8 @@
     "react-dom": "^18.2.0",
     "typescript": "^5.3.3"
   },
-  "keywords": [
-    "AvioUI",
-    "create-react-app",
-    "react",
-    "next",
-    "typescript",
-    "javascript",
-    "react library",
-    "react tools",
-    "html tools",
-    "ripple react",
-    "ripple",
-    "ripple effects"
-  ]
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  }
 }
