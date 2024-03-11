@@ -7,13 +7,10 @@
       }
     ],
     "@babel/preset-react",
-    "@babel/preset-typescript",
-    [
-      "@babel/preset-modules",
-      {
-        "loose": true
-      }
-    ]
+    "@babel/preset-typescript"
   ],
-  "plugins": ["@babel/plugin-transform-runtime"]
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-unicode-property-regex"
+  ]
 }
